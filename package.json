@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@types/react-redux": "^7.1.16",
+    "react-redux": "^7.2.4",
+    "urql": "^2.0.3"
+  }
+}
