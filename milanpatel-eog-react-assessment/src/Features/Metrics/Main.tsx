@@ -78,7 +78,11 @@ export const Main = (props: Mainprops) => {
 
       {selectedMetrics.length > 0 && (
         <Query query={queryHistoryData} variables={{ inputs }} requestPolicy="network-only">
-          {queryResults => <Chart dataFromUrql={queryResults} />}
+          {queryResults => (
+            <div>
+              <Chart dataFromUrql={queryResults} />
+            </div>
+          )}
         </Query>
       )}
     </React.Fragment>

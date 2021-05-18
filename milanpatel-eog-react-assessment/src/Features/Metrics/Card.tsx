@@ -22,7 +22,9 @@ export const Card = (props: cardProps) => {
 
   return (
     <React.Fragment>
-      <div style={{ width: '150px', height: '100px', backgroundColor: 'green', margin: '10px' }}>
+      <div
+        style={{ width: '150px', height: '100px', backgroundColor: 'green', margin: '10px', display: 'inline-block' }}
+      >
         <div style={{ float: 'right' }}>
           <button
             onClick={() => {

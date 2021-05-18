@@ -86,9 +86,9 @@ export const Chart = (props: chartProps) => {
     let to = getCurrentTimeString();
 
     let layout = {
-      width: 800,
-      height: 600,
-      title: `Chart for ${name}`,
+      width: 1200,
+      height: 800,
+      title: ``,
       xaxis: {
         range: [from, to],
         type: 'Date',
@@ -106,31 +106,27 @@ export const Chart = (props: chartProps) => {
     return null;
   }
 
+  const chartData: Plotly.Data[] = [];
+  renderCharts();
+  for (const iterator of metricData.SelectedMetrics) {
+    let data: Plotly.Data = {
+      x: localCharts[iterator].x,
+      y: localCharts[iterator].y,
+      type: 'scatter',
+      mode: 'lines',
+      'line.color': 'red',
+      text: iterator,
+    };
+    chartData.push(data);
+  }
+
   return (
     <React.Fragment>
-      {localCharts !== undefined &&
-        metricData.SelectedMetrics.length > 0 &&
-        renderCharts() &&
-        metricData.SelectedMetrics.map((key: any) => {
-          return (
-            localCharts[key] !== undefined && (
-              <div key={key} style={{ margin: '10px', display: 'inline-block' }}>
-                <Plot
-                  key={key}
-                  data={[
-                    {
-                      x: localCharts[key].x,
-                      y: localCharts[key].y,
-                      type: 'scatter',
-                      mode: 'lines',
-                    },
-                  ]}
-                  layout={prepareLayout(key)}
-                />
-              </div>
-            )
-          );
-        })}
+      {localCharts !== undefined && metricData.SelectedMetrics.length > 0 && (
+        <div style={{ margin: '10px', display: 'inline-block' }}>
+          <Plot data={chartData} layout={prepareLayout('')} />
+        </div>
+      )}
     </React.Fragment>
   );
 };
